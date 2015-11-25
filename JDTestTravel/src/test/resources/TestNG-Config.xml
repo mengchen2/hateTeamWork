@@ -9,7 +9,10 @@
 			</run>
 		</groups>
 		<classes>
+			<class name="com.symbio.test.JDTestTravel.TestCase_Domestic" />
 			<class name="com.symbio.test.JDTestTravel.TestCase_Intl" />
+			<class name="com.symbio.test.JDTestTravel.LoginTest" />
 		</classes>
+		
 	</test>
 </suite>
