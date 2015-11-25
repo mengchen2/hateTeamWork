@@ -8,6 +8,8 @@
 				<include name="jdtravel-test" />
 			</run>
 		</groups>
-
+		<classes>
+			<class name="com.symbio.test.JDTestTravel.TestCase_Intl" />
+		</classes>
 	</test>
 </suite>

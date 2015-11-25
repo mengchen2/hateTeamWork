@@ -11,9 +11,20 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.symbio.test.JDTestTravel.helper.ElementUtil;
 
-public class InternationalTravelPageObj extends TravelPageObj {
+/**
+ * Page for international travel of travel page (jipiao.jd.com)
+ * 
+ * @author Stephen Raharja
+ *
+ */
+public class InternationalTravelPageObj {
 
 	private WebDriver driver;
+
+	private ElementUtil eUtil;
+
+	@FindBy(id = "fore2")
+	private WebElement internationalTravelTab;
 
 	@FindBy(id = "gjdepCity")
 	private WebElement startCityTextField;
@@ -21,7 +32,7 @@ public class InternationalTravelPageObj extends TravelPageObj {
 	@FindBy(id = "gjarrCity")
 	private WebElement destinationCityTextField;
 
-	@FindBy(id = "roundFlight")
+	@FindBy(id = "journeyTypert")
 	private WebElement travelTypeRadioButton;
 
 	@FindBy(id = "gjdepDate")
@@ -30,7 +41,7 @@ public class InternationalTravelPageObj extends TravelPageObj {
 	@FindBy(id = "gjarrDate")
 	private WebElement endDatePicker;
 
-	@FindBy(id = "validQuery")
+	@FindBy(css = ".fore2 #validQuery")
 	private WebElement searchButton;
 
 	@FindBy(id = "adtNum")
@@ -39,39 +50,89 @@ public class InternationalTravelPageObj extends TravelPageObj {
 	@FindBy(id = "morecondition")
 	private WebElement advancedOptionPanel;
 
-	public InternationalTravelPageObj(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 30), this);
+	/**
+	 * Switch to this page
+	 */
+	public void goToThisPage() {
+		eUtil.switchToNewestWindow();
 	}
 
+	/**
+	 * Switch to international travel
+	 */
+	public void goInternationalPage() {
+		internationalTravelTab.click();
+	}
+
+	public InternationalTravelPageObj(WebDriver driver) {
+		// Initialize driver
+		this.driver = driver;
+
+		// Set implicit wait of 20 seconds
+		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 20), this);
+		eUtil = new ElementUtil(driver);
+	}
+
+	/**
+	 * Insert place name to both origin and destination textfields
+	 * 
+	 * @param source
+	 *            Origin place name
+	 * @param destination
+	 *            Destination place name
+	 */
 	public void insertDestination(String source, String destination) {
 		startCityTextField.sendKeys(source);
 		destinationCityTextField.sendKeys(destination);
 	}
 
+	/**
+	 * Insert start and end date of travel
+	 * 
+	 * @param startDate
+	 * @param endDate
+	 */
 	public void insertDate(Date startDate, Date endDate) {
-		ElementUtil eUtil = new ElementUtil(driver);
 		startDatePicker.click();
+		startDatePicker.click();
+		// Using util class to pick date in date picker element
 		eUtil.clickDate(startDate);
-
-		endDatePicker.click();
 		eUtil.clickDate(endDate);
 	}
 
+	/**
+	 * Click the radio button for round travel
+	 */
+	public void pickRoundTravel() {
+		travelTypeRadioButton.click();
+	}
+
+	/**
+	 * Select the number of traveling adults from dropdown list
+	 * 
+	 * @param quantity
+	 *            Number of adults
+	 */
 	public void selectNumberOfAdult(int quantity) {
 		Select adultNumberDropdown = new Select(adultNumberSelectList);
 		for (WebElement option : adultNumberDropdown.getOptions()) {
-			if (option.getText().equals(String.valueOf(quantity))) {
+			if (option.getAttribute("value").equals(String.valueOf(quantity))) {
 				option.click();
 				break;
 			}
 		}
 	}
 
+	/**
+	 * Expand travel query form to show more options
+	 */
 	public void openAdvancedOption() {
 		advancedOptionPanel.click();
 	}
 
+	/**
+	 * Initiate search
+	 */
 	public void clickSearchButton() {
 		searchButton.click();
 	}
