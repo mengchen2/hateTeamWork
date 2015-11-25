@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default" duration-ms="17465" started-at="2015-11-25T03:15:24Z" finished-at="2015-11-25T03:15:41Z">
+    <groups>
+      <group name="jdtravel-test">
+        <method signature="LoginTest.test()[pri:0, instance:com.symbio.test.JDTestTravel.LoginTest@64eee839]" name="test" class="com.symbio.test.JDTestTravel.LoginTest"/>
+      </group> <!-- jdtravel-test -->
+    </groups>
+    <test name="Travel" duration-ms="17465" started-at="2015-11-25T03:15:24Z" finished-at="2015-11-25T03:15:41Z">
+      <class name="com.symbio.test.JDTestTravel.LoginTest">
+        <test-method status="PASS" signature="initDriver()[pri:0, instance:com.symbio.test.JDTestTravel.LoginTest@64eee839]" name="initDriver" is-config="true" duration-ms="9389" started-at="2015-11-25T11:15:24Z" finished-at="2015-11-25T11:15:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initDriver -->
+        <test-method status="PASS" signature="initSite()[pri:0, instance:com.symbio.test.JDTestTravel.LoginTest@64eee839]" name="initSite" is-config="true" duration-ms="3295" started-at="2015-11-25T11:15:33Z" finished-at="2015-11-25T11:15:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initSite -->
+        <test-method status="PASS" signature="test()[pri:0, instance:com.symbio.test.JDTestTravel.LoginTest@64eee839]" name="test" duration-ms="4756" started-at="2015-11-25T11:15:36Z" finished-at="2015-11-25T11:15:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+      </class> <!-- com.symbio.test.JDTestTravel.LoginTest -->
+    </test> <!-- Travel -->
+  </suite> <!-- Default -->
+</testng-results>
