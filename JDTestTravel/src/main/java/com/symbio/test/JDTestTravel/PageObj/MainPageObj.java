@@ -16,9 +16,12 @@ public class MainPageObj {
 
 	@FindBy(css = "a[href='http://jipiao.jd.com/']")
 	private WebElement travelLink;
-
+	
+	@FindBy(css = "#ttbar-login .link-login")
+	private WebElement loginPageLink;
+	
 	private WebDriver driver;
-
+	
 	public MainPageObj(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 15), this);
@@ -26,5 +29,11 @@ public class MainPageObj {
 
 	public void goToTravel() {
 		travelLink.click();
+		
+	}
+
+	public void goToLoginPage(){
+		loginPageLink.click();
+		
 	}
 }
