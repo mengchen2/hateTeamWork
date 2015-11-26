@@ -6,14 +6,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.symbio.test.JDTestTravel.PageObj.LogInTestPageObj;
-import com.symbio.test.JDTestTravel.PageObj.MainPageObj;
+import com.symbio.test.JDTestTravel.PageObject.LogInTestPageObject;
+import com.symbio.test.JDTestTravel.PageObject.MainPageObject;
 
 public class LoginTest {
 
 	private WebDriver driver;
-	private LogInTestPageObj logInTestPageObj;
-	private MainPageObj mainPageObj;
+	private LogInTestPageObject logInTestPageObj;
+	private MainPageObject mainPageObj;
 
 	@Test(groups = "jdtravel-test")
 	public void test() {
@@ -31,7 +31,7 @@ public class LoginTest {
 	@BeforeClass(groups = "jdtravel-test")
 	public void initDriver() {
 		driver = new FirefoxDriver();
-		logInTestPageObj = new LogInTestPageObj(driver);
-		mainPageObj = new MainPageObj(driver);
+		logInTestPageObj = new LogInTestPageObject(driver);
+		mainPageObj = new MainPageObject(driver);
 	}
 }

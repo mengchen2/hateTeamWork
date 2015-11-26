@@ -9,12 +9,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.symbio.test.JDTestTravel.PageObject.DomesticTravelPageObject;
+import com.symbio.test.JDTestTravel.PageObject.InternationalTravelPageObject;
+import com.symbio.test.JDTestTravel.PageObject.MainPageObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import com.symbio.test.JDTestTravel.PageObj.DomesticTravelPageObj;
-import com.symbio.test.JDTestTravel.PageObj.InternationalTravelPageObj;
-import com.symbio.test.JDTestTravel.PageObj.MainPageObj;
 
 public class TestCase_Domestic {
 	
@@ -29,8 +29,8 @@ public class TestCase_Domestic {
 	
 	private WebDriver driver;
 	 
-	private MainPageObj mainPO;
-	private DomesticTravelPageObj travelPO; 
+	private MainPageObject mainPO;
+	private DomesticTravelPageObject travelPO; 
 	
 	@Test(groups = "jdtravel-test")
 	public void test() {
@@ -47,8 +47,8 @@ public class TestCase_Domestic {
 	@BeforeClass(groups = "jdtravel-test")
 	public void initTest() throws ParseException {
 		driver = new FirefoxDriver();
-		mainPO = new MainPageObj(driver);
-		travelPO = new DomesticTravelPageObj(driver);
+		mainPO = new MainPageObject(driver);
+		travelPO = new DomesticTravelPageObject(driver);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		startDate = sdf.parse(startDateString);
