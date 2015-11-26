@@ -2,12 +2,8 @@ package com.symbio.test.JDTestTravel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -15,11 +11,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.symbio.test.JDTestTravel.PageObj.InternationalTravelPageObj;
-import com.symbio.test.JDTestTravel.PageObj.MainPageObj;
-import com.symbio.test.JDTestTravel.helper.ElementUtil;
+import com.symbio.test.JDTestTravel.PageObject.InternationalTravelPageObject;
+import com.symbio.test.JDTestTravel.PageObject.MainPageObject;
 
-public class TestCase_Intl {
+public class TravelTestCase_International {
 
 	private String originCity = "北京";
 	private String destinationCity = "夏威夷";
@@ -32,12 +27,15 @@ public class TestCase_Intl {
 
 	private WebDriver driver;
 
-	private MainPageObj mainPO;
-	private InternationalTravelPageObj travelPO;
+	private MainPageObject mainPageObject;
+	private InternationalTravelPageObject travelPO;
 
+	/**
+	 * Test case for international travel
+	 */
 	@Test(groups = "jdtravel-test")
 	public void test() {
-		mainPO.goToTravel();
+		mainPageObject.goToTravel();
 		travelPO.goToThisPage();
 		travelPO.goInternationalPage();
 		travelPO.pickRoundTravel();
@@ -48,24 +46,36 @@ public class TestCase_Intl {
 		travelPO.clickSearchButton();
 	}
 
+	/**
+	 * Initiate the necessary variables for the test
+	 * 
+	 * @throws ParseException
+	 *             Exception when parsing string into date
+	 */
 	@BeforeClass(groups = "jdtravel-test")
 	public void initTest() throws ParseException {
 		driver = new FirefoxDriver();
-		mainPO = new MainPageObj(driver);
-		travelPO = new InternationalTravelPageObj(driver);
+		mainPageObject = new MainPageObject(driver);
+		travelPO = new InternationalTravelPageObject(driver);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		startDate = sdf.parse(startDateString);
-		endDate = sdf.parse(endDateString);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		startDate = simpleDateFormat.parse(startDateString);
+		endDate = simpleDateFormat.parse(endDateString);
 	}
 
+	/**
+	 * Initiate the base website
+	 */
 	@BeforeMethod(groups = "jdtravel-test")
 	public void initSite() {
 		driver.get("http://www.jd.com");
 	}
 
+	/**
+	 * Close all opened internet browser windows
+	 */
 	@AfterClass(groups = "jdtravel-test")
 	public void destroyTest() {
-		 driver.quit();
+		driver.quit();
 	}
 }

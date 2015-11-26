@@ -1,4 +1,4 @@
-package com.symbio.test.JDTestTravel.PageObj;
+package com.symbio.test.JDTestTravel.PageObject;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import com.symbio.test.JDTestTravel.helper.ElementUtil;
+import com.symbio.test.JDTestTravel.helper.ElementUtility;
 
 /**
  * Page for international travel of travel page (jipiao.jd.com)
@@ -17,44 +17,44 @@ import com.symbio.test.JDTestTravel.helper.ElementUtil;
  * @author Stephen Raharja
  *
  */
-public class InternationalTravelPageObj {
+public class InternationalTravelPageObject {
 
 	private WebDriver driver;
 
-	private ElementUtil eUtil;
+	private ElementUtility elementUtil;
 
-	@FindBy(id = "fore2")
+	@FindBy(css = "#fore2")
 	private WebElement internationalTravelTab;
 
-	@FindBy(id = "gjdepCity")
+	@FindBy(css = "#gjdepCity")
 	private WebElement startCityTextField;
 
-	@FindBy(id = "gjarrCity")
+	@FindBy(css = "#gjarrCity")
 	private WebElement destinationCityTextField;
 
-	@FindBy(id = "journeyTypert")
+	@FindBy(css = "#journeyTypert")
 	private WebElement travelTypeRadioButton;
 
-	@FindBy(id = "gjdepDate")
+	@FindBy(css = "#gjdepDate")
 	private WebElement startDatePicker;
 
-	@FindBy(id = "gjarrDate")
+	@FindBy(css = "#gjarrDate")
 	private WebElement endDatePicker;
 
 	@FindBy(css = ".fore2 #validQuery")
 	private WebElement searchButton;
 
-	@FindBy(id = "adtNum")
+	@FindBy(css = "#adtNum")
 	private WebElement adultNumberSelectList;
 
-	@FindBy(id = "morecondition")
+	@FindBy(css = "#morecondition")
 	private WebElement advancedOptionPanel;
 
 	/**
 	 * Switch to this page
 	 */
 	public void goToThisPage() {
-		eUtil.switchToNewestWindow();
+		elementUtil.switchToNewestWindow();
 	}
 
 	/**
@@ -64,13 +64,13 @@ public class InternationalTravelPageObj {
 		internationalTravelTab.click();
 	}
 
-	public InternationalTravelPageObj(WebDriver driver) {
+	public InternationalTravelPageObject(WebDriver driver) {
 		// Initialize driver
 		this.driver = driver;
 
 		// Set implicit wait of 20 seconds
 		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 20), this);
-		eUtil = new ElementUtil(driver);
+		elementUtil = new ElementUtility(driver);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class InternationalTravelPageObj {
 		startDatePicker.click();
 		startDatePicker.click();
 		// Using util class to pick date in date picker element
-		eUtil.clickDate(startDate);
-		eUtil.clickDate(endDate);
+		elementUtil.clickDate(startDate);
+		elementUtil.clickDate(endDate);
 	}
 
 	/**
@@ -115,7 +115,11 @@ public class InternationalTravelPageObj {
 	 */
 	public void selectNumberOfAdult(int quantity) {
 		Select adultNumberDropdown = new Select(adultNumberSelectList);
+		
+		//Looping each option
 		for (WebElement option : adultNumberDropdown.getOptions()) {
+			
+			//Check the value if equal to the quantity
 			if (option.getAttribute("value").equals(String.valueOf(quantity))) {
 				option.click();
 				break;

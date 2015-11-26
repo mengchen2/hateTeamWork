@@ -1,4 +1,4 @@
-package com.symbio.test.JDTestTravel.PageObj;
+package com.symbio.test.JDTestTravel.PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class LogInTestPageObj {
+public class LogInTestPageObject {
 
 	private WebDriver driver;
 		
@@ -24,7 +24,7 @@ public class LogInTestPageObj {
 	private WebElement clickSubmit;
 	
 	
-	public LogInTestPageObj(WebDriver driver) {
+	public LogInTestPageObject(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 20), this);
 	}

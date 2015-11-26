@@ -1,4 +1,4 @@
-package com.symbio.test.JDTestTravel.PageObj;
+package com.symbio.test.JDTestTravel.PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,28 +12,34 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
  * @author Stephen Raharja
  *
  */
-public class MainPageObj {
+public class MainPageObject {
 
 	@FindBy(css = "a[href='http://jipiao.jd.com/']")
 	private WebElement travelLink;
-	
+
 	@FindBy(css = "#ttbar-login .link-login")
 	private WebElement loginPageLink;
-	
+
 	private WebDriver driver;
-	
-	public MainPageObj(WebDriver driver) {
+
+	public MainPageObject(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 15), this);
 	}
 
+	/**
+	 * Go to travel page
+	 */
 	public void goToTravel() {
 		travelLink.click();
-		
+
 	}
 
-	public void goToLoginPage(){
+	/**
+	 * Go to login page
+	 */
+	public void goToLoginPage() {
 		loginPageLink.click();
-		
+
 	}
 }
