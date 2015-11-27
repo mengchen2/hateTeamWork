@@ -32,6 +32,7 @@ public class TravelTestCase_International {
 
 	/**
 	 * Test case for international travel
+	 * @throws Exception 
 	 */
 	@Test(groups = "jdtravel-test")
 	public void test() {

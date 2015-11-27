@@ -60,7 +60,7 @@ public class HotelSearchPageObject {
 	 * @param startDate
 	 *            Date of the start of booking
 	 * @param endDate
-	 *            Date of the end of booking
+	 *            Date of the end of booking 
 	 */
 	public void insertDate(Date startDate, Date endDate) {
 		startDatePicker.click();

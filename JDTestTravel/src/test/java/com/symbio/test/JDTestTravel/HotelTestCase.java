@@ -35,13 +35,15 @@ public class HotelTestCase {
 
 	private String destinationCityString1 = "北京";
 	private String destinationCityString2 = "香港";
+	private String startDateString = "2015-12-25";
+	private String endDateString = "2016-01-04";
 
 	private Date startDate;
 	private Date endDate;
 
-	private String startDateString = "2015-12-25";
-	private String endDateString = "2016-01-04";
-
+	/**
+	 * test case to search hotel in Beijing
+	 */
 	@Test(groups = "jdhotel-test")
 	public void testCase1() {
 		mainPageObj.goToTravel();
@@ -57,6 +59,31 @@ public class HotelTestCase {
 
 		hotelDetailPageObject.goToThisPage();
 		hotelDetailPageObject.bookFirstAvailableRoom();
+	}
+
+	/**
+	 * test case to search hotel in HongKong
+	 * 
+	 * @throws Exception
+	 */
+	@Test(groups = "jdhotel-test")
+	public void testCase2() throws InterruptedException {
+		mainPageObj.goToTravel();
+
+		travelPageObj.goToThisPage(); // go to the parent site page
+		travelPageObj.goToBookHotel(); // go to hotel page
+
+		hotelSearchPageObj.insertDestinationCity(destinationCityString2); // enter destination
+		hotelSearchPageObj.searchHotel(); // search hotels
+
+		hotelSearchResultPageObj.filterHotelFiveStar(); // get five star hotel
+		hotelSearchResultPageObj.filterHotelFreeWifi(); // get free wifi hotel
+		hotelSearchResultPageObj.bookHighestRatedHotel(); // get the one with highest rating
+		
+		hotelDetailPageObject.goToThisPage();
+		hotelDetailPageObject.changeHotelBookingDate(startDate, endDate); // change the booking date
+	
+		hotelDetailPageObject.bookFirstAvailableRoom(); // pick the first available room
 	}
 
 	/**
@@ -89,6 +116,6 @@ public class HotelTestCase {
 	 */
 	@AfterClass(groups = "jdhotel-test")
 	public void destroyTest() {
-		 driver.quit();
+		driver.quit();
 	}
 }
