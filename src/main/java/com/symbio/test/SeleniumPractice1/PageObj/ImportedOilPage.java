@@ -13,15 +13,15 @@ public class ImportedOilPage {
 	private WebElement oilsHealthTab;
 
 	//small class link
-	@FindBy(css = ".i-ext>a[href='http://list.jd.com/1320-5019-5024-0-0-0-0-0-0-0-1-1-1-1-1-72-4137-0.html']")
+	@FindBy(css = ".item[style='display: block;'] .i-ext :nth-child(2)")
 	private WebElement importedOilLink;
 
 	//the locator of first Item's image
-	@FindBy(css = ".gl-item>div[data-i='1']>.p-img")
+	@FindBy(css = "#plist ul li:nth-child(2) .p-img a")
 	private WebElement fuLinMen;
 
 	//the locator of second Item's image
-	@FindBy(css = ".gl-item>div[data-i='2']>.p-img")
+	@FindBy(css = "#plist ul li:nth-child(1) .p-img a")
 	private WebElement bellina;
 
 	// add to cart button item

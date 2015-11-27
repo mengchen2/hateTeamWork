@@ -26,7 +26,6 @@ public class GoToCartPage {
 	 */
 	public void goToCart() {
 		goToCartBtn.click();
-		common.switchToNewWindow();
 	}
 
 }

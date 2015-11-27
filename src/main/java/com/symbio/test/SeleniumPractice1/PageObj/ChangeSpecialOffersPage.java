@@ -1,5 +1,6 @@
 package com.symbio.test.SeleniumPractice1.PageObj;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -22,9 +23,18 @@ public class ChangeSpecialOffersPage {
 
 	@FindBy(css = ".btn-1.select-promotion")
 	private WebElement suretBtn;
+	
+	@FindBy(css=".item-form")
+	private List<WebElement> productList;
+	
+
+	@FindBy(css=".ui-dialog-content .op-btns.ac :nth-child(1)")
+	private WebElement confirmButton;
 
 	private WebDriver driver;
 	private WebDriverWait wait;
+	
+	
 
 	public ChangeSpecialOffersPage(WebDriver driver) {
 		this.driver = driver;
@@ -89,6 +99,36 @@ public class ChangeSpecialOffersPage {
 //		}
 		System.out.println(i);
 
+	}
+	
+	public List<WebElement> searchFromProductList(String cssLocator){
+		List<WebElement> filterElementList = new LinkedList<WebElement>(); 
+		for(WebElement w:productList){
+			filterElementList.add(w.findElement(By.cssSelector(cssLocator)));
+		}
+		return filterElementList;
+	}
+	
+	
+	public List<WebElement> searchFromProductList(String cssLocator ,String[] textConditions){
+		List<WebElement> filterElementList = new LinkedList<WebElement>(); 
+		boolean flag = true;
+		for(WebElement w:productList){
+			flag = true;
+			for(String c:textConditions){
+				if(!w.getText().contains(c)){
+					flag = false;
+				}
+			}
+			if(flag){
+				filterElementList.add(w.findElement(By.cssSelector(cssLocator)));
+			}
+		}
+		return filterElementList;
+	}
+	
+	public void clickConfirmDeleteButton(){
+		this.confirmButton.click();
 	}
 
 }
