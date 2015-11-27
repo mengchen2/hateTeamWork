@@ -6,6 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+/**
+ * Page for coffee tea
+ * @author yilanyezi Amy
+ *
+ */
 public class CoffeeTeaPage {
 
 	// coffee and tea
@@ -39,7 +44,7 @@ public class CoffeeTeaPage {
 	}
 
 	/**
-	 * add two Items to the cart
+	 *the method of adding two Items to the cart
 	 */
 	public void AddCoffee() {
 		addItemToCart.addItemToCart(beverageBrewingTab, coffeeTeaLink, nestle, witeCoffee, addToCartBtn);

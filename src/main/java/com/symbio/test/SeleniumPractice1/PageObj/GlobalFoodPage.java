@@ -6,6 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+/**
+ * page for globalfood
+ * @author yilanyezi
+ *
+ */
 public class GlobalFoodPage {
 
 	// food table 
@@ -26,7 +31,7 @@ public class GlobalFoodPage {
 
 	// add to cart button item
 	@FindBy(css = "#InitCartUrl")
-	private WebElement addToCartBtn;
+	private WebElement addToCartButton;
 
 	private AddItemsToCartPage addItemToCart;
 	private WebDriver driver;
@@ -47,7 +52,7 @@ public class GlobalFoodPage {
 	 * add two food to the cart
 	 */
 	public void addFood() {
-		addItemToCart.addItemToCart(freshFoodTab, globalFoodLink, lobsterImage, beefImage, addToCartBtn);
+		addItemToCart.addItemToCart(freshFoodTab, globalFoodLink, lobsterImage, beefImage, addToCartButton);
 	}
 
 }

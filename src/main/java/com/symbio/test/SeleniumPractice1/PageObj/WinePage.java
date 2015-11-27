@@ -17,15 +17,15 @@ public class WinePage {
 
 	//the locator of first Item's image
 	@FindBy(css = ".gl-item>div[data-i='2']>.p-img")
-	private WebElement martell;
+	private WebElement martellImage;
 
 	//the locator of second Item's image
 	@FindBy(css = ".gl-item>div[data-i='1']>.p-img")
-	private WebElement hennessy;
+	private WebElement hennessyImage;
 
 	// add to cart button item
 	@FindBy(css = "#InitCartUrl")
-	private WebElement addToCartBtn;
+	private WebElement addToCartButton;
 
 	private AddItemsToCartPage addItemToCart;
 	private WebDriver driver;
@@ -37,8 +37,11 @@ public class WinePage {
 
 	}
 
+	/**
+	 * the method of adding two wine to the cart
+	 */
 	public void AddWine() {
-		addItemToCart.addItemToCart(chineseAndForeignWinesTab, wineLink, martell, hennessy, addToCartBtn);
+		addItemToCart.addItemToCart(chineseAndForeignWinesTab, wineLink, martellImage, hennessyImage, addToCartButton);
 	}
 
 }

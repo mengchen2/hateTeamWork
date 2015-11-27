@@ -10,25 +10,39 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * define some common methods in this page
+ * 
+ * @author yilanyezi Amy
+ *
+ */
 public class Common {
 
 	private static Common common;
 	private WebDriver driver;
-	private LinkedList<String> list;
+	private LinkedList<String> windowsHandlelList;
 	private WebDriverWait wait;
 	private Actions actions;
 
 	public Common(WebDriver driver, WebDriverWait wait) {
+
 		this.driver = driver;
 		actions = new Actions(driver);
-		list = new LinkedList<String>();
+		windowsHandlelList = new LinkedList<String>();
 		this.wait = wait;
-		list.add(driver.getWindowHandle());
+		windowsHandlelList.add(driver.getWindowHandle());
 		System.out.println(driver.getWindowHandle());
 
 	}
 
+	/**
+	 * Initialize the common
+	 * @param driver
+	 * @param wait
+	 * @return
+	 */
 	public static Common getInstance(WebDriver driver, WebDriverWait wait) {
+
 		if (common == null) {
 			return new Common(driver, wait);
 		} else {
@@ -42,6 +56,7 @@ public class Common {
 	 * @param oldHandles
 	 */
 	public void waitNewWindow(final int oldHandles) {
+
 		wait.until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				System.out.println(driver.getWindowHandles().size());
@@ -57,17 +72,26 @@ public class Common {
 	 * switch to new window
 	 */
 	public void switchToNewWindow() {
+
 		System.out.println(driver.getWindowHandle());
 		Set<String> handles = driver.getWindowHandles();
-		if (list.size() == handles.size()) {
-			return;
-		} else {
-			for (String win : handles) {
-				if (!list.contains(win)) {
-					list.add(win);
-					driver.switchTo().window(win);
-					driver.manage().window().maximize();
-				}
+//		if (windowsHandlelList.size() == handles.size()) {
+//			return;
+//		} else {
+//			for (String win : handles) {
+//				if (!windowsHandlelList.contains(win)) {
+//					windowsHandlelList.add(win);
+//					driver.switchTo().window(win);
+//					driver.manage().window().maximize();
+//				}
+//			}
+//		}
+		
+		for (String win : handles) {
+			if (!windowsHandlelList.contains(win)) {
+				windowsHandlelList.add(win);
+				driver.switchTo().window(win);
+				driver.manage().window().maximize();
 			}
 		}
 	}
@@ -76,7 +100,7 @@ public class Common {
 	 * switch to supermarket home page
 	 */
 	public void switchHomePage() {
-		driver.switchTo().window(list.get(0));
+		driver.switchTo().window(windowsHandlelList.get(0));
 		driver.manage().window().maximize();
 	}
 
@@ -84,7 +108,8 @@ public class Common {
 	 * switch to previous page
 	 */
 	public void switchPreviousPage() {
-		driver.switchTo().window(list.get(list.size() - 2));
+		
+		driver.switchTo().window(windowsHandlelList.get(windowsHandlelList.size() - 2));
 	}
 
 	/**

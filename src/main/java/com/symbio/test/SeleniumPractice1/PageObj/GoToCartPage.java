@@ -7,10 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/***
+ * the function is to go to the cart page
+ * @author yilanyezi Amy
+ *
+ */
 public class GoToCartPage {
 
 	@FindBy(css = "#settleup-2014>.cw-icon>a")
-	private WebElement goToCartBtn;
+	private WebElement goToCartButton;
 
 	private WebDriver driver;
 	private Common common;
@@ -25,7 +30,7 @@ public class GoToCartPage {
 	 * go to the cart page
 	 */
 	public void goToCart() {
-		goToCartBtn.click();
+		goToCartButton.click();
 		common.switchToNewWindow();
 	}
 
