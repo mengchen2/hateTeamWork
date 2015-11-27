@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import com.symbio.test.SeleniumPractice1.PageObj.AddItemsToCartPage;
 import com.symbio.test.SeleniumPractice1.PageObj.ChangeSpecialOffersPage;
 import com.symbio.test.SeleniumPractice1.PageObj.CoffeeTeaPage;
@@ -20,6 +21,7 @@ import com.symbio.test.SeleniumPractice1.PageObj.GoToCartPage;
 import com.symbio.test.SeleniumPractice1.PageObj.ImportedOilPage;
 import com.symbio.test.SeleniumPractice1.PageObj.NutsPage;
 import com.symbio.test.SeleniumPractice1.PageObj.WinePage;
+
 
 public class JingDongSuperMarketTest {
 	private WebDriver driver;
@@ -39,11 +41,11 @@ public class JingDongSuperMarketTest {
 	private AddItemsToCartPage addItemToCart;
 	private GoToCartPage goToPage;
 	private ChangeSpecialOffersPage changeSpecialOffersPage;
-
-	
 	
 	@BeforeClass
-	public void initDriver() {
+
+	public void init() throws InterruptedException {
+		
 
 		driver = new FirefoxDriver();
 		wait = new WebDriverWait(driver, 6);
@@ -66,10 +68,7 @@ public class JingDongSuperMarketTest {
 		driver.get("http://channel.jd.com/chaoshi.html");
 	}
 
-	 @AfterClass
-	 public void destroyDriver(){
-	 driver.quit();
-	 }
+
 
 
 	@Test
@@ -111,5 +110,6 @@ public class JingDongSuperMarketTest {
 		int size = fruitsDeleteElements.size();
 		Assert.assertEquals(size, 0);
 	}
+	
 
 }

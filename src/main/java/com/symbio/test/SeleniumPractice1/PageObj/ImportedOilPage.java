@@ -41,8 +41,9 @@ public class ImportedOilPage {
 
 	/***
 	 * add two Items to the cart
+	 * @throws InterruptedException 
 	 */
-	public void AddOil() {
+	public void AddOil() throws InterruptedException {
 		addItemToCart.addItemToCart(oilsHealthTab, importedOilLink, fuLinMen, bellina, addToCartBtn);
 
 	}

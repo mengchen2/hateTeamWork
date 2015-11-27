@@ -34,7 +34,7 @@ public class Common {
 		list.add(driver.getWindowHandle());
 		this.wait = wait;
 		actions = new Actions(driver);
-		
+		wait = new WebDriverWait(this.driver,100);
 	}
 	
 	public static Common getInstance(WebDriver driver){
@@ -77,6 +77,7 @@ public class Common {
 		}
 	}
 
+
 	/**
 	 * switch to supermarket home page
 	 */
@@ -88,6 +89,7 @@ public class Common {
 		}
 		driver.switchTo().window(list.get(0));
 		driver.manage().window().maximize();
+
 	}
 
 	/**
@@ -119,5 +121,11 @@ public class Common {
 		// driver.findElement(By.(elementToClick)).click();
 		elementToClick.click();
 		wait.until(ExpectedConditions.visibilityOf(elementToWait));
+	}
+
+	
+	public void waitAndSwitchToNewWindow(final int oldHandles){
+		this.waitNewWindow(oldHandles);
+		this.switchToNewWindow();
 	}
 }

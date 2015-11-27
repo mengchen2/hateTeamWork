@@ -40,8 +40,9 @@ public class CoffeeTeaPage {
 
 	/**
 	 * add two Items to the cart
+	 * @throws InterruptedException 
 	 */
-	public void AddCoffee() {
+	public void AddCoffee() throws InterruptedException {
 		addItemToCart.addItemToCart(beverageBrewingTab, coffeeTeaLink, nestle, witeCoffee, addToCartBtn);
 	}
 

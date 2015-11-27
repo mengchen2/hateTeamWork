@@ -1,5 +1,6 @@
 package com.symbio.test.SeleniumPractice1.PageObj;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -37,8 +38,9 @@ public class AddItemsToCartPage {
 	 *            is the second item you want to add to cart
 	 * @param button
 	 *            is the add to cart button
+	 * @throws InterruptedException 
 	 */
-	public void addItemToCart(WebElement tab, WebElement link, WebElement item1, WebElement item2, WebElement button) {
+	public void addItemToCart(WebElement tab, WebElement link, WebElement item1, WebElement item2, WebElement button){
 
 		int oldHandles = driver.getWindowHandles().size();
 		// common.selectWhichFoodClassToBuy(tab, link);
@@ -67,7 +69,7 @@ public class AddItemsToCartPage {
 		common.switchToNewWindow();
 		wait.until(ExpectedConditions.visibilityOf(button));
 		button.click();
-
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".success-b>h3")));
 		// switch to the supermarket page
 		common.switchHomePage();
 	}
