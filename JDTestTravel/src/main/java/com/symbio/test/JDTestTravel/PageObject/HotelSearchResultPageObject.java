@@ -104,6 +104,10 @@ public class HotelSearchResultPageObject {
 
 			// Compare current rating with the highest rating stored
 			if (highestRatingFloat < currentRatingFloat) {
+				
+				//Set newest rating value
+				highestRatingFloat = currentRatingFloat;
+				
 				// Change the button to the highest one
 				highestRatedHotelButton = currentHotelContainer.findElement(By.cssSelector(".price .btn"));
 			}

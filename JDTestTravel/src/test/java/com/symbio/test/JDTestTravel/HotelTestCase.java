@@ -18,7 +18,7 @@ import com.symbio.test.JDTestTravel.PageObject.MainPageObject;
 import com.symbio.test.JDTestTravel.PageObject.TravelPageObject;
 
 /**
- * Test case for booking travel test case
+ * Test case for booking hotel test case
  * 
  * @author Stephen Raharja
  *
@@ -89,6 +89,6 @@ public class HotelTestCase {
 	 */
 	@AfterClass(groups = "jdhotel-test")
 	public void destroyTest() {
-		// driver.quit();
+		 driver.quit();
 	}
 }

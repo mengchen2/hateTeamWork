@@ -65,6 +65,8 @@ public class HotelSearchPageObject {
 	public void insertDate(Date startDate, Date endDate) {
 		startDatePicker.click();
 		elementUtil.clickDate(startDate);
+
+		endDatePicker.click();
 		elementUtil.clickDate(endDate);
 	}
 
