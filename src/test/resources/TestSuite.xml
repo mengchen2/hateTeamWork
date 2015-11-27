@@ -2,9 +2,10 @@
 <suite name="Default">
 
 	<test name="Default">
+		<!-- <classes> <class name="com.symbio.test.SeleniumPractice1.BaiduMapTest"> 
+			</class> </classes> -->
 		<classes>
-			<class name="com.symbio.test.SeleniumPractice1.BaiduMapTest">
-			</class>
+			<class name="com.symbio.test.SeleniumPractice1.JingDongSuperMarketTest" />
 		</classes>
 
 

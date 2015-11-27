@@ -13,15 +13,15 @@ public class CoffeeTeaPage {
 	private WebElement beverageBrewingTab;
 
 	//small class link
-	@FindBy(css = ".i-ext>a[href='http://list.jd.com/1320-1585-3986-0-0-0-0-0-0-0-1-1-1-1-1-72-4137-0.html']")
+	@FindBy(css = ".item[style='display: block;'] .i-ext :nth-child(1)")
 	private WebElement coffeeTeaLink;
 
 	//the locator of first Item's image
-	@FindBy(css = ".gl-item>div[data-i='1']>.p-img")
+	@FindBy(css = "#plist ul li:nth-child(2) .p-img a")
 	private WebElement nestle;
 
 	//the locator of second Item's image
-	@FindBy(css = ".gl-item>div[data-i='2']>.p-img")
+	@FindBy(css = "#plist ul li:nth-child(1) .p-img a")
 	private WebElement witeCoffee;
 
 	// add to cart button item
@@ -40,8 +40,9 @@ public class CoffeeTeaPage {
 
 	/**
 	 * add two Items to the cart
+	 * @throws InterruptedException 
 	 */
-	public void AddCoffee() {
+	public void AddCoffee() throws InterruptedException {
 		addItemToCart.addItemToCart(beverageBrewingTab, coffeeTeaLink, nestle, witeCoffee, addToCartBtn);
 	}
 

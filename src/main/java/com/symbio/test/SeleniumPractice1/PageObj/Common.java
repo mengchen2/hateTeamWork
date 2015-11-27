@@ -11,41 +11,44 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Common {
-
-	private static Common common;
+	
+	private static Common c;
 	private WebDriver driver;
 	private LinkedList<String> list;
+	private int handles;
 	private WebDriverWait wait;
 	private Actions actions;
-
-	public Common(WebDriver driver, WebDriverWait wait) {
+	private Common(WebDriver driver){
 		this.driver = driver;
-		actions = new Actions(driver);
 		list = new LinkedList<String>();
-		this.wait = wait;
+		handles = 1;
 		list.add(driver.getWindowHandle());
-		System.out.println(driver.getWindowHandle());
-
+		wait = new WebDriverWait(this.driver,100);
+		actions = new Actions(driver);
+		
 	}
-
-	public static Common getInstance(WebDriver driver, WebDriverWait wait) {
-		if (common == null) {
-			return new Common(driver, wait);
-		} else {
-			return common;
+	public Common(WebDriver driver,WebDriverWait wait){
+		this.driver = driver;
+		list = new LinkedList<String>();
+		handles = 1;
+		list.add(driver.getWindowHandle());
+		this.wait = wait;
+		actions = new Actions(driver);
+		wait = new WebDriverWait(this.driver,100);
+	}
+	
+	public static Common getInstance(WebDriver driver){
+		if(c==null){
+			return new Common(driver);
+		}else{
+			return c;
 		}
 	}
-
-	/**
-	 * wait the pops up window
-	 * 
-	 * @param oldHandles
-	 */
-	public void waitNewWindow(final int oldHandles) {
-		wait.until(new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver driver) {
-				System.out.println(driver.getWindowHandles().size());
-				if (oldHandles != driver.getWindowHandles().size()) {
+	
+	public void waitNewWindow(final int oldHandles){
+		wait.until(new ExpectedCondition<Boolean>(){
+			public Boolean apply(WebDriver dr) {
+				if(oldHandles!=dr.getWindowHandles().size()){
 					return true;
 				}
 				return false;
@@ -55,29 +58,38 @@ public class Common {
 
 	/**
 	 * switch to new window
-	 */
-	public void switchToNewWindow() {
-		System.out.println(driver.getWindowHandle());
-		Set<String> handles = driver.getWindowHandles();
-		if (list.size() == handles.size()) {
+	 */	
+	
+	public void switchToNewWindow(){
+		
+		Set<String> set = driver.getWindowHandles();
+		if(handles == set.size()){
 			return;
-		} else {
-			for (String win : handles) {
-				if (!list.contains(win)) {
-					list.add(win);
-					driver.switchTo().window(win);
+		}else{
+			for(String h:set){
+				if(!list.contains(h)){
+					list.add(h);
+					handles++;
+					driver.switchTo().window(h);
 					driver.manage().window().maximize();
 				}
 			}
 		}
 	}
 
+
 	/**
 	 * switch to supermarket home page
 	 */
 	public void switchHomePage() {
+		for(int i= list.size()-1;i>0;i--){
+			driver.switchTo().window(list.get(i));
+			driver.close();
+			list.remove(list.get(i));
+		}
 		driver.switchTo().window(list.get(0));
 		driver.manage().window().maximize();
+
 	}
 
 	/**
@@ -106,10 +118,14 @@ public class Common {
 	 * @param elementToWait
 	 */
 	public void clickAndwait(WebElement elementToClick, WebElement elementToWait) {
-		// TODO Auto-generated method stub
 		// driver.findElement(By.(elementToClick)).click();
 		elementToClick.click();
 		wait.until(ExpectedConditions.visibilityOf(elementToWait));
 	}
 
+	
+	public void waitAndSwitchToNewWindow(final int oldHandles){
+		this.waitNewWindow(oldHandles);
+		this.switchToNewWindow();
+	}
 }

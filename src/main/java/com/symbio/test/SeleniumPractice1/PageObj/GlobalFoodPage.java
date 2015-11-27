@@ -7,21 +7,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class GlobalFoodPage {
+	
+	
 
 	// food table 
 	@FindBy(css = ".i1")
 	private WebElement freshFoodTab;
 
 	//small class link
-	@FindBy(css = ".i-ext>a[href='http://channel.jd.com/12218-12220.html']")
+	@FindBy(css = ".item[style='display: block;'] .i-ext :nth-child(1)")
 	private WebElement globalFoodLink;
 
 	//the locator of first Item's image
-	@FindBy(css = ".fore.fore1>.p-img>a[title*='海鲜']")
+	@FindBy(css = "#plist ul li:nth-child(2) .p-img a")
 	private WebElement lobsterImage;
 
 	//the locator of second Item's image
-	@FindBy(css = ".fore.fore1>.p-img>a[title*='牛排']")
+	@FindBy(css = "#plist ul li:nth-child(1) .p-img a")
 	private WebElement beefImage;
 
 	// add to cart button item
