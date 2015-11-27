@@ -131,4 +131,6 @@ public class HotelSearchResultPageObject {
 		(new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".hotellist")));
 	}
+	
+	
 }
