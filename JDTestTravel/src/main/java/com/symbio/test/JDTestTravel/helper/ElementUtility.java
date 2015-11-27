@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -49,12 +48,20 @@ public class ElementUtility {
 
 		while (true) {
 
-			// Wait until year is changed
-			wait.until(ExpectedConditions.textToBePresentInElementValue(By.cssSelector("table:nth-child(1) .currYs"),
-					String.valueOf(calendar.get(Calendar.YEAR))));
-			// Check target and actual date
+			// Wait date picker is loaded
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector((".currYs"))));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector((".nextMonth"))));
+
+			// Get current year string
 			String currentYearString = currentDatePicker.findElement(By.cssSelector("table:nth-child(1) .currYs"))
 					.getText();
+
+			// Go to next loop if can't get the year string
+			if (currentYearString.isEmpty()) {
+				// If loops infinitely, add wait to methods calling
+				// this method
+				continue;
+			}
 
 			// If targeted year is larger, move to the next month
 			if (calendar.get(Calendar.YEAR) > Integer.parseInt(currentYearString)) {
